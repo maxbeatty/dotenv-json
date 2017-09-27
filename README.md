@@ -18,7 +18,11 @@ Load your environment variables at the beginning of your program:
 
 ```js
 require("dotenv-json")();
+
+console.log(process.env.public_api_key) // => s@Mpl3_d@Ta
 ```
+
+_N.B. Existing keys in `process.env` will **not** be overwritten._
 
 You can customize the location of your `.env.json` file by passing a `path` option:
 
