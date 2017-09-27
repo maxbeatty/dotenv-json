@@ -1,0 +1,22 @@
+{
+  "name": "dotenv-json",
+  "version": "1.0.0",
+  "description": "Load environment variables via a JSON file",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxbeatty/dotenv-json.git"
+  },
+  "keywords": [
+    "dotenv"
+  ],
+  "author": "Max Beatty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxbeatty/dotenv-json/issues"
+  },
+  "homepage": "https://github.com/maxbeatty/dotenv-json#readme"
+}
