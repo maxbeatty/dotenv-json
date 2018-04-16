@@ -1,20 +1,22 @@
-const path = require("path");
-const fs = require("fs");
+const {readFileSync} = require("fs");
+const {resolve} = require("path");
 
-module.exports = function dotenvJSON(options) {
-  const jsonFile = (options && options.path) || ".env.json";
 
-  const jsonString = fs.readFileSync(path.resolve(process.cwd(), jsonFile), {
-    encoding: "utf8"
-  });
+module.exports = function dotenvJSON({encoding = 'utf8', path} = {}) {
+  if(!path) path = resolve(process.cwd(), '.env.json');
 
   try {
-    const envConfig = JSON.parse(jsonString);
+    const parsed = JSON.parse(readFileSync(path, {encoding}));
 
-    for (const key in envConfig) {
-      process.env[key] = process.env[key] || envConfig[key];
+    const {env} = process
+    for (const key in parsed) {
+      if (!env.hasOwnProperty(key)) {
+        env[key] = parsed[key];
+      }
     }
-  } catch (err) {
-    console.error(err);
+
+    return {parsed};
+  } catch (error) {
+    return {error};
   }
 };
