@@ -11,7 +11,9 @@ module.exports = function dotenvJSON({encoding = 'utf8', path} = {}) {
     const {env} = process
     for (const key in parsed) {
       if (!env.hasOwnProperty(key)) {
-        env[key] = parsed[key];
+        const value = parsed[key];
+
+        env[key] = typeof value === 'string' ? value : JSON.stringify(value);
       }
     }
 
